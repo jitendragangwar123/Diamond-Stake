@@ -2,14 +2,14 @@
 pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts-upgradeable/utils/ReentrancyGuardUpgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 
 /**
  * @title ReDiscreteStaking Contract
  * @author Jitendra Kumar
  * @dev A contract for staking Ether and earning rewards based on staking duration.
  */
-contract ReDiscreteStaking is ReentrancyGuardUpgradeable {
-    address public owner;
+contract Staking is OwnableUpgradeable, ReentrancyGuardUpgradeable {
     uint256 public currentPositionId;
 
     struct Position {
@@ -32,7 +32,6 @@ contract ReDiscreteStaking is ReentrancyGuardUpgradeable {
     event PositionClosed(uint256 positionId, address indexed user, uint256 amount);
 
     constructor() {
-        owner = msg.sender;
         currentPositionId = 0;
 
         tiers[0] = 700;
