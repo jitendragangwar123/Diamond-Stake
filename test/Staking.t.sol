@@ -35,9 +35,9 @@ contract StakingTest is Test {
     }
 
     function testCalculateInterest() public view {
-        uint256 basePoints = 800; 
+        uint256 basePoints = 800;
         uint256 weiAmount = 1 ether;
-        
+
         uint256 interest = staking.calculateInterest(basePoints, weiAmount);
         assertEq(interest, 0.08 ether);
     }
