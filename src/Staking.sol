@@ -65,7 +65,7 @@ contract Staking is OwnableUpgradeable, ReentrancyGuardUpgradeable {
         currentPositionId += 1;
     }
 
-    function calculateInterest(uint256 basePoints, uint256 weiAmount) private pure returns (uint256) {
+    function calculateInterest(uint256 basePoints, uint256 weiAmount) public pure returns (uint256) {
         require(basePoints > 0, "Base points must be greater than zero");
         require(weiAmount > 0, "Wei amount must be greater than zero");
         return (basePoints * weiAmount) / 10000;

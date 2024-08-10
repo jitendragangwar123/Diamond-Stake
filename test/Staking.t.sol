@@ -33,4 +33,12 @@ contract StakingTest is Test {
         assertTrue(position.open);
         assertEq(user1.balance, initialBalance - stakeAmount);
     }
+
+    function testCalculateInterest() public view {
+        uint256 basePoints = 800; 
+        uint256 weiAmount = 1 ether;
+        
+        uint256 interest = staking.calculateInterest(basePoints, weiAmount);
+        assertEq(interest, 0.08 ether);
+    }
 }
