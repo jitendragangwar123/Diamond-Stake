@@ -41,4 +41,13 @@ contract StakingTest is Test {
         uint256 interest = staking.calculateInterest(basePoints, weiAmount);
         assertEq(interest, 0.08 ether);
     }
+
+    function testGetLockPeriods() public view {
+        uint256[] memory lockPeriods = staking.getLockPeriods();
+        assertEq(lockPeriods.length, 4);
+        assertEq(lockPeriods[0], 0);
+        assertEq(lockPeriods[1], 30);
+        assertEq(lockPeriods[2], 60);
+        assertEq(lockPeriods[3], 90);
+    }
 }
