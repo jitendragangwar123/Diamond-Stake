@@ -44,7 +44,7 @@ contract Staking is OwnableUpgradeable, ReentrancyGuardUpgradeable {
         lockPeriods.push(60);
         lockPeriods.push(90);
     }
-
+    // stake ether 
     function stakeEther(uint256 numDays) external payable {
         require(tiers[numDays] > 0, "Tier not found for the given number of days");
 
@@ -64,13 +64,13 @@ contract Staking is OwnableUpgradeable, ReentrancyGuardUpgradeable {
         emit Staked(currentPositionId, msg.sender, msg.value, block.timestamp + (numDays * 1 days));
         currentPositionId += 1;
     }
-
+    // calculate interest 
     function calculateInterest(uint256 basePoints, uint256 weiAmount) public pure returns (uint256) {
         require(basePoints > 0, "Base points must be greater than zero");
         require(weiAmount > 0, "Wei amount must be greater than zero");
         return (basePoints * weiAmount) / 10000;
     }
-
+   // get lock periods
     function getLockPeriods() external view returns (uint256[] memory) {
         return lockPeriods;
     }
